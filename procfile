@@ -1,0 +1,1 @@
+worker: node -r module-alias/register ./dist
