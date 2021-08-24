@@ -3,8 +3,6 @@ import { IScraper } from '@entities/Scraper';
 
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import {File} from 'megajs';
-import deasync from 'deasync'
 
 
 export class TioanimeScraper implements IScraper {
