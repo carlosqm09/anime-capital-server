@@ -1,0 +1,5 @@
+GET http://localhost:3000/api/anime/recents
+
+###
+
+GET http://localhost:3000/api/anime/episode?url=/ver/megamiryou-no-ryoubokun-5 HTTP/1.1
