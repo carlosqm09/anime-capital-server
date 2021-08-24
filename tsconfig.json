@@ -83,7 +83,7 @@
   "include": [
     "src/**/*.ts",
     "spec/**/*.ts"
-, "src/shared/telegraf.ts", "src/shared/telegraf.js"  ],
+, "src/shared/telegraf.ts", "src/shared/telegraf.js"],
   "exclude": [
     "src/public/"
   ]

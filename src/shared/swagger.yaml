@@ -1,0 +1,19 @@
+swagger: "2.0"
+info:
+  title: Anime Central API
+  description: API description in Markdown.
+  version: 1.0.0
+host: anime-central-api.herokuapp.com
+basePath: /api
+schemes:
+  - https
+
+paths:
+  /anime/recents:
+    get:
+      summary: Devuelve la lista de los últimos episodios emitidos
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Ok
