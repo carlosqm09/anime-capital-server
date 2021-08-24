@@ -1,1 +1,1 @@
-worker: node -r module-alias/register ./dist
+worker: node -r module-alias/register ./dist --env=production
