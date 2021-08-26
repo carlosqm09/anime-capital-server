@@ -1,3 +1,8 @@
+export interface IProvider{
+    key: string;
+    icon: string
+}
+
 export interface IAnime{
     name: string;
     url: string;
@@ -15,6 +20,7 @@ export interface IEpisode{
 }
 
 export interface IAnimeDao{
-    recentEmitted: () => Promise<IAnime[] | undefined>;
-    episode: (url: string) => Promise<IEpisode | undefined>;
+    getProviders: () => IProvider[];
+    recentEmitted: (provider: string) => Promise<IAnime[] | undefined>;
+    episode: (provider: string, url: string) => Promise<IEpisode | undefined>;
 }

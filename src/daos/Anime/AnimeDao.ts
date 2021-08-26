@@ -1,15 +1,31 @@
-import {IAnime, IAnimeDao, IEpisode} from '@entities/Anime';
+import {IAnime, IAnimeDao, IEpisode, IProvider} from '@entities/Anime';
 import {TioanimeScraper} from '@daos/Scrapers/tioanime';
+import { IScraper } from '@entities/Scraper';
 
-const tioAnime = new TioanimeScraper();
+const providers: {[key: string]: IScraper} = {
+    tioanime: new TioanimeScraper()
+}
 
 export class AnimeDao implements IAnimeDao{
+
     /**
      * 
      */
-    public async recentEmitted(): Promise<IAnime[] | undefined>{
+    public getProviders(): IProvider[]{
+        return [
+            {
+                key: "tioanime",
+                icon: "https://tioanime.com/assets/img/logo.png"
+            }
+        ]
+    }
+
+    /**
+     * @param provider
+     */
+    public async recentEmitted(provider: string): Promise<IAnime[] | undefined>{
         try{
-            const recentEmitted = await tioAnime.recentEmitted();
+            const recentEmitted = await providers[provider].recentEmitted();
             return recentEmitted;
         }catch(e){
 
@@ -17,11 +33,12 @@ export class AnimeDao implements IAnimeDao{
     }
 
     /**
+     * @param provider
      * @param url
      */
-    public async episode(url: string): Promise<IEpisode | undefined>{
+    public async episode(provider: string, url: string): Promise<IEpisode | undefined>{
         try{
-            const episode = await tioAnime.episode(url);
+            const episode = await providers[provider].episode(url);
             return episode;
         }catch(e){
             

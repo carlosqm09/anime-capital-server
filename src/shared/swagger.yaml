@@ -9,9 +9,48 @@ schemes:
   - https
 
 paths:
+  /anime/get-providers:
+    get:
+      summary: Devuelve la lista de proveedores disponibles junto con su ícono
+      tags:
+        - Animes
+      producer: 
+        - applicattion/json
+      responses:
+        200:
+          description: Ok
   /anime/recents:
     get:
       summary: Devuelve la lista de los últimos episodios emitidos
+      tags:
+        - Animes
+      parameters:
+        - in: header
+          name: provider
+          type: string
+          required: true
+          description: Define hacia a donde va a buscar los capitulos
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Ok
+  /anime/episode:
+    get:
+      summary: Devuelve la lista de los últimos episodios emitidos
+      tags:
+        - Animes
+      parameters:
+        - in: header
+          name: provider
+          type: string
+          required: true
+          description: Define hacia a donde va a buscar los capitulos
+        - in: query
+          name: url
+          type: string
+          required: true
+          description: Ruta al video que se desea ver, que es entregada por /anime/recents
       produces:
         - application/json
       responses:
