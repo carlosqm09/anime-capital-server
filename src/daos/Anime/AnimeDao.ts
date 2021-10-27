@@ -1,9 +1,11 @@
 import {IAnime, IAnimeDao, IEpisode, IProvider} from '@entities/Anime';
 import {TioanimeScraper} from '@daos/Scrapers/tioanime';
 import { IScraper } from '@entities/Scraper';
+import { JkanimeScrapper } from '@daos/Scrapers/jkanime';
 
 const providers: {[key: string]: IScraper} = {
-    tioanime: new TioanimeScraper()
+    tioanime: new TioanimeScraper(),
+    jkanime: new JkanimeScrapper()
 }
 
 export class AnimeDao implements IAnimeDao{
