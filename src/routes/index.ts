@@ -4,6 +4,7 @@ import {getEpisode, getProviders, getRecentEmitted, redir} from './Animes';
 import swagger from 'swagger-ui-express';
 import YAML from 'yamljs';
 import path from 'path';
+import cors from 'cors';
 const docs = YAML.load(path.join(__dirname, '/../shared/swagger.yaml'))
 
 
@@ -18,7 +19,7 @@ const docs = YAML.load(path.join(__dirname, '/../shared/swagger.yaml'))
 const animeRouter = Router();
 animeRouter.get('/',)
 animeRouter.get('/get-providers', getProviders)
-animeRouter.get('/recents', getRecentEmitted);
+animeRouter.get('/recents', cors(), getRecentEmitted);
 animeRouter.get('/episode', getEpisode);
 
 

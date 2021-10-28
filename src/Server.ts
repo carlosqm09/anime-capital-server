@@ -14,12 +14,14 @@ import logger from '@shared/Logger';
 const app = express();
 const { BAD_REQUEST } = StatusCodes;
 
+import cors from 'cors';
+
 
 
 /************************************************************************************
  *                              Set basic express settings
  ***********************************************************************************/
-
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
