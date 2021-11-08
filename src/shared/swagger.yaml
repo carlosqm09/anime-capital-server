@@ -3,10 +3,10 @@ info:
   title: Anime Central API
   description: API description in Markdown.
   version: 1.0.0
-host: anime-central-api.herokuapp.com
+host: localhost:3000
 basePath: /api
 schemes:
-  - https
+  - http
 
 paths:
   /anime/get-providers:

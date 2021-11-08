@@ -4,7 +4,7 @@ import {getEpisode, getProviders, getRecentEmitted, redir} from './Animes';
 import swagger from 'swagger-ui-express';
 import YAML from 'yamljs';
 import path from 'path';
-import cors from 'cors';
+
 const docs = YAML.load(path.join(__dirname, '/../shared/swagger.yaml'))
 
 
@@ -19,20 +19,13 @@ const docs = YAML.load(path.join(__dirname, '/../shared/swagger.yaml'))
 const animeRouter = Router();
 animeRouter.get('/',)
 animeRouter.get('/get-providers', getProviders)
-animeRouter.get('/recents', cors(), getRecentEmitted);
+animeRouter.get('/recents', getRecentEmitted);
 animeRouter.get('/episode', getEpisode);
 
 
 // Export the base-router
 const baseRouter = Router();
 
-baseRouter.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-    next();
-});
 
 baseRouter.use('/anime', animeRouter);
 baseRouter.get('/', redir);
