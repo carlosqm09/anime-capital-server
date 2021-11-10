@@ -1,6 +1,7 @@
 export interface IProvider{
     key: string;
-    icon: string
+    icon: string;
+    enabled: boolean;
 }
 
 export interface IAnime{

@@ -17,7 +17,23 @@ export class AnimeDao implements IAnimeDao{
         return [
             {
                 key: "tioanime",
-                icon: "https://tioanime.com/assets/img/logo.png"
+                icon: "https://tioanime.com/assets/img/logo.png",
+                enabled: true
+            },
+            {
+                key: "jkanime",
+                icon: "https://cdn.jkanime.net/assets2/css/img/logo.png",
+                enabled: false
+            },
+            {
+                key: "monoschinos",
+                icon: "https://monoschinos2.com/assets/img/logo.png",
+                enabled: false
+            },
+            {
+                key: "animeflv",
+                icon: "https://www3.animeflv.net/assets/animeflv/img/logo.png?v=2.3",
+                enabled: false
             }
         ]
     }
