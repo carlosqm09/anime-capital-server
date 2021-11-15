@@ -2,6 +2,7 @@ import {IAnime, IAnimeDao, IEpisode, IProvider} from '@entities/Anime';
 import {TioanimeScraper} from '@daos/Scrapers/tioanime';
 import { IScraper } from '@entities/Scraper';
 import { JkanimeScrapper } from '@daos/Scrapers/jkanime';
+import axios from 'axios';
 
 const providers: {[key: string]: IScraper} = {
     tioanime: new TioanimeScraper(),
@@ -61,5 +62,17 @@ export class AnimeDao implements IAnimeDao{
         }catch(e){
             
         }
+    }
+
+    public async getNewSeason(): Promise<any | undefined>{
+      try {
+          const url = "https://api.jikan.moe/v3/season/later";
+          const list = await axios.get(url);
+          const res = list.data;
+          return res;
+          
+      } catch (e) {
+          console.log(e);
+      }
     }
 }

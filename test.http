@@ -8,3 +8,14 @@ provider: jkanime
 GET http://localhost:3000/api/anime/episode?url=/ver/shaman-king-2021-20
 provider: tioanime
 
+###
+
+GET  http://localhost:3000/api/anime/new-season
+
+
+###
+
+GET  https://api.jikan.moe/v3/season/later
+
+
+

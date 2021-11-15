@@ -25,3 +25,4 @@ export interface IAnimeDao{
     recentEmitted: (provider: string) => Promise<IAnime[] | undefined>;
     episode: (provider: string, url: string) => Promise<IEpisode | undefined>;
 }
+

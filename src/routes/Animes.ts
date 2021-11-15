@@ -49,3 +49,19 @@ export async function getEpisode(req: Request, res: Response){
     const episode = await animes.episode(provider as string, url!.toString());
     res.status(OK).json(episode);
 }
+
+
+/**
+ * @param req
+ * @param res
+ * @returns
+ */
+
+export async function getNewSeason(req: Request, res: Response){
+    try {
+        const newSeasonList = await animes.getNewSeason();
+        res.status(OK).send(newSeasonList);
+    } catch (e) {
+        throw e
+    }
+}
