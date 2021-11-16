@@ -35,7 +35,7 @@ export class TioanimeScraper implements IScraper {
 
         const scripts = $('script').map((i, el) => el.children as any);
 
-        const script = scripts[scripts.length - 1].data;
+        const script = scripts[5].data;
 
         const links = JSON.parse(script.match(/[^\n\n    $(document).ready(function () {\n        initEpisode();\n    }); var videos = \r].*/g)!
             .join('')

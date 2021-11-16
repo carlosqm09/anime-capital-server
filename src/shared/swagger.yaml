@@ -4,8 +4,10 @@ info:
   description: API description in Markdown.
   version: 1.0.0
 servers:
+  - url: http://localhost:3000/api
   - url: https://anime-capital-server.herokuapp.com/api
 schemes:
+  - http
   - https
 
 paths:
