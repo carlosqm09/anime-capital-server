@@ -3,6 +3,8 @@ import morgan from 'morgan';
 import path from 'path';
 import helmet from 'helmet';
 // import '@shared/telegraf';
+import dotenv from 'dotenv';
+dotenv.config({ path: __dirname+'/.env' });
 
 import express, { NextFunction, Request, Response } from 'express';
 import StatusCodes from 'http-status-codes';
