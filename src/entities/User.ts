@@ -1,24 +1,24 @@
 export interface IUser {
-
-    txt: string;
-    to: string;
+    id: number;
+    name: string;
+    email: string;
 }
 
 class User implements IUser {
 
+    public id: number;
+    public name: string;
+    public email: string;
 
-    public txt: string;
-    public to: string;
-
-    constructor(nameOrUser: string | IUser, txt?: string , to?: string) {
+    constructor(nameOrUser: string | IUser, email?: string, id?: number) {
         if (typeof nameOrUser === 'string') {
-
-            this.txt= txt || '';
-            this.to= to || '';
+            this.name = nameOrUser;
+            this.email = email || '';
+            this.id = id || -1;
         } else {
-
-            this.txt= nameOrUser.txt;
-            this.to= nameOrUser.to;
+            this.name = nameOrUser.name;
+            this.email = nameOrUser.email;
+            this.id = nameOrUser.id;
         }
     }
 }
