@@ -1,10 +1,10 @@
-swagger: "2.0"
+openapi: 3.0.0
 info:
   title: Anime Central API
   description: API description in Markdown.
   version: 1.0.0
-host: localhost:3000
-basePath: /api
+servers:
+  - url: http://localhost:3000/api
 schemes:
   - http
 
@@ -19,6 +19,8 @@ paths:
       responses:
         200:
           description: Ok
+
+
   /anime/recents:
     get:
       summary: Devuelve la lista de los últimos episodios emitidos
@@ -35,6 +37,8 @@ paths:
       responses:
         200:
           description: Ok
+
+
   /anime/episode:
     get:
       summary: Devuelve la lista de los últimos episodios emitidos
@@ -56,3 +60,63 @@ paths:
       responses:
         200:
           description: Ok
+
+
+  /anime/anime-trad:
+    post:
+      summary: Devuelve un texto traducido al idioma deseado.
+      tags:
+        - APi Terceros
+      description: Realiza un llamado a la API de Microsoft para traducir texto mediante una IA que identifica el idioma de entrada.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                txt:          # <!--- form field name
+                  type: string
+                to:    # <!--- form field name
+                  type: string
+              required:
+                - txt
+                - to
+      responses:
+        200:    # status code
+          description: Texto traducido al idioma deseado
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+        400:
+          description: Operacion invalida, texto incompatible
+        404:
+          description: No se realizo la operacion   
+
+
+  /anime/new-season:
+    get:
+      summary: Devuelve una lista de series proximas a estrenarse
+      tags:
+        - APi Terceros
+      description: Hace una peticion a una API de terceros para obtener una lista de series.
+      responses:
+        200:    # status code
+          description: A JSON array of anime series
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+        400:
+          description: Error al completar, intente de nuevo
+        404:
+          description: No se realizo la operacion.  
+
+
+  
+
