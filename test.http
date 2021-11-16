@@ -33,3 +33,8 @@ Content-length: 2000
 POST http://localhost:3000/api/anime/anime-trad HTTP/1.1
 content-type: application/json
 
+{
+    "to": "es",
+    "txt": "Directly after the events of Made in Abyss Movie 3: Dawn of the Deep Soul, the third installment of Made in Abyss covers the adventure of Reg, Riko, and Nanachi in the Sixth Layer, The Capital of the Unreturned."
+}
+

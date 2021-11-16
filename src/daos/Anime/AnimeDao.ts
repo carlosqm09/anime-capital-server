@@ -1,5 +1,5 @@
-import {IAnime, IAnimeDao, IEpisode, IProvider} from '@entities/Anime';
-import {TioanimeScraper} from '@daos/Scrapers/tioanime';
+import { IAnime, IAnimeDao, IEpisode, IProvider } from '@entities/Anime';
+import { TioanimeScraper } from '@daos/Scrapers/tioanime';
 import { IScraper } from '@entities/Scraper';
 import { JkanimeScrapper } from '@daos/Scrapers/jkanime';
 import axios from 'axios';
@@ -7,17 +7,17 @@ import { config } from 'dotenv';
 const { v4: uuidv4 } = require('uuid');
 
 
-const providers: {[key: string]: IScraper} = {
+const providers: { [key: string]: IScraper } = {
     tioanime: new TioanimeScraper(),
     jkanime: new JkanimeScrapper()
 }
 
-export class AnimeDao implements IAnimeDao{
+export class AnimeDao implements IAnimeDao {
 
     /**
      * 
      */
-    public getProviders(): IProvider[]{
+    public getProviders(): IProvider[] {
         return [
             {
                 key: "tioanime",
@@ -45,11 +45,11 @@ export class AnimeDao implements IAnimeDao{
     /**
      * @param provider
      */
-    public async recentEmitted(provider: string): Promise<IAnime[] | undefined>{
-        try{
+    public async recentEmitted(provider: string): Promise<IAnime[] | undefined> {
+        try {
             const recentEmitted = await providers[provider].recentEmitted();
             return recentEmitted;
-        }catch(e){
+        } catch (e) {
 
         }
     }
@@ -58,56 +58,55 @@ export class AnimeDao implements IAnimeDao{
      * @param provider
      * @param url
      */
-    public async episode(provider: string, url: string): Promise<IEpisode | undefined>{
-        try{
+    public async episode(provider: string, url: string): Promise<IEpisode | undefined> {
+        try {
             const episode = await providers[provider].episode(url);
             return episode;
-        }catch(e){
-            
+        } catch (e) {
+
         }
     }
 
-    public async getNewSeason(): Promise<any | undefined>{
-      try {
-          const url = "https://api.jikan.moe/v3/season/later";
-          const list = await axios.get(url);
-          const res = list.data;
-          return res;
-          
-      } catch (e) {
-          console.log(e);
-      }
+    public async getNewSeason(): Promise<any | undefined> {
+        try {
+            const url = "https://api.jikan.moe/v3/season/later";
+            const list = await axios.get(url);
+            const res = list.data;
+            return res;
+
+        } catch (e) {
+            console.log(e);
+        }
     }
 
 
-        /**
-     * @param txt
-     * @param to
-     */
-    public async translateData(txt: string, to: string ){
+    /**
+ * @param txt
+ * @param to
+ */
+    public async translateData(txt: string, to: string) {
         try {
-            const apikey= "c3f68e236d2047b69d65b187e386c093";
+            const apikey = "c3f68e236d2047b69d65b187e386c093";
             const location = "centralus";
             const url = `https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=${to}`;
-            const list = await axios.post(url, {
+            const list = await axios.post(url, [{
+                'text': txt
+            }], {
                 headers: {
                     "Ocp-Apim-Subscription-Key": apikey,
                     "Ocp-Apim-Subscription-Region": location,
                     "Content-type": "application/json",
-                    
-                },
-                body: [{
-                    'text': txt
-                }],
+
+                }
             });
 
             const res = list.data;
             return res;
-            
+
         } catch (e) {
             throw e;
         }
-      }
+    }
 
 
 }

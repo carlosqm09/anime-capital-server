@@ -75,8 +75,7 @@ export async function getNewSeason(req: Request, res: Response){
 
  export async function translateData(req: Request, res: Response){
     try {
-        const txt =  "Helo world";
-        const to = "es";
+        const {txt, to} = req.body;
         console.log(req.body);
         const dataTrad = await animes.translateData(txt as string, to as string);
         res.status(OK).json(dataTrad);
