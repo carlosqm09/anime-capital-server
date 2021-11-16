@@ -1,6 +1,6 @@
 import { Router } from 'express';
 // import { getAllUsers, addOneUser, updateOneUser, deleteOneUser } from './Users';
-import {getEpisode, getProviders, getRecentEmitted,getNewSeason, redir} from './Animes';
+import {getEpisode, getProviders, getRecentEmitted,getNewSeason, translateData ,redir} from './Animes';
 import swagger from 'swagger-ui-express';
 import YAML from 'yamljs';
 import path from 'path';
@@ -22,6 +22,7 @@ animeRouter.get('/get-providers', getProviders)
 animeRouter.get('/recents', getRecentEmitted);
 animeRouter.get('/episode', getEpisode);
 animeRouter.get('/new-season', getNewSeason)
+animeRouter.post('/anime-trad', translateData)
 
 
 // Export the base-router

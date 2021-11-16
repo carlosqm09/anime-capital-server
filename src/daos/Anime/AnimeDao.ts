@@ -3,6 +3,9 @@ import {TioanimeScraper} from '@daos/Scrapers/tioanime';
 import { IScraper } from '@entities/Scraper';
 import { JkanimeScrapper } from '@daos/Scrapers/jkanime';
 import axios from 'axios';
+import { config } from 'dotenv';
+const { v4: uuidv4 } = require('uuid');
+
 
 const providers: {[key: string]: IScraper} = {
     tioanime: new TioanimeScraper(),
@@ -75,4 +78,36 @@ export class AnimeDao implements IAnimeDao{
           console.log(e);
       }
     }
+
+
+        /**
+     * @param txt
+     * @param to
+     */
+    public async translateData(txt: string, to: string ){
+        try {
+            const apikey= "c3f68e236d2047b69d65b187e386c093";
+            const location = "centralus";
+            const url = `https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=${to}`;
+            const list = await axios.post(url, {
+                headers: {
+                    "Ocp-Apim-Subscription-Key": apikey,
+                    "Ocp-Apim-Subscription-Region": location,
+                    "Content-type": "application/json",
+                    
+                },
+                body: [{
+                    'text': txt
+                }],
+            });
+
+            const res = list.data;
+            return res;
+            
+        } catch (e) {
+            throw e;
+        }
+      }
+
+
 }
