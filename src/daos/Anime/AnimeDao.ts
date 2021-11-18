@@ -20,7 +20,7 @@ export class AnimeDao implements IAnimeDao {
         return [
             {
                 key: "tioanime",
-                icon: "https://tioanime.com/assets/img/logo.png",
+                icon: "https://tioanime.com/assets/img/logo-dark.png",
                 enabled: true
             },
             {
