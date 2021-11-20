@@ -71,6 +71,7 @@ const staticDir = path.join(__dirname, 'public');
 app.use(express.static(staticDir));
 app.get('*', (req: Request, res: Response) => {
     res.sendFile('index.html', {root: viewsDir});
+    res.redirect('/api/api-docs');
 });
 
 // Export express instance
